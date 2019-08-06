@@ -1,0 +1,55 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item" aria-current="page">ToDo App</li>
+    <li class="breadcrumb-item active" aria-current="page">{{title}}</li>
+  </ol>
+</nav>
+
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">Search</span>
+  </div>
+  <input type="text" [(ngModel)]="searchText" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Employee</th>
+      <th scope="col">...</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let department of departments | departmentFilter : searchText"
+    [class.selected]="department === selectedDepartment"
+    (click)="onSelect(department)">
+      <th scope="row">{{department.id}}</th>
+      <td>{{department.name}}</td>
+      <td>{{department.empName}}</td>
+      <td><button class="delete" title="delete Department" (click)="deleteDepartment(department)">x</button></td>
+    </tr>
+  </tbody>
+</table>
+
+<div>
+  <label>Name:
+    <input class="form-control" #departmentName required>
+  </label>
+</div>
+
+<div>
+  <label>Employee:
+    <select class="form-control" #empName [(ngModel)]="employee"> 
+      <option *ngFor="let employee of employees">
+        {{employee.name}}
+      </option>
+    </select>
+  </label>
+</div>
+
+<button (click) = "createDepartment(departmentName.value, empName.value)">
+Create department</button>
+
+<app-departments-detail [department] = "selectedDepartment"></app-departments-detail>

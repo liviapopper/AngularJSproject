@@ -1,0 +1,18 @@
+<div>
+    <div *ngIf="department">
+        <h2>{{department.name | uppercase}} Details</h2>
+        <div><span>id: </span>{{department.id}}</div>
+        <div>
+          <label>name:
+            <input [(ngModel)]="department.name" placeholder="name">
+          </label>
+        </div>
+        <div>
+          Employees: 
+          <span *ngFor="let empName of department.empNames; let last = last"> 
+              <span *ngIf = "last; else notLast">{{empName}}</span>
+              <ng-template #notLast>{{empName}}, &nbsp;</ng-template>
+          </span>
+        </div>
+    </div>
+  </div> 

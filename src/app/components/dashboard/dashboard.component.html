@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="col">
+
+    <div class="card">
+      <div class="card-header">
+        Employees
+      </div>
+      <div class="card-body">
+        <ul class="list-group">
+          <li class="list-group-item" *ngFor="let employee of employees">{{employee.name}}</li>
+        </ul>
+      </div>
+    </div>
+    <br>
+    <div class="card">
+      <div class="card-header">
+        Departments
+      </div>
+      <div class="card-body">
+        <ul class="list-group">
+          <li class="list-group-item" *ngFor="let department of departments">{{department.name}}</li>
+        </ul>
+      </div>
+    </div>
+  <br>
+  <div class="card">
+    <div class="card-header">
+      Tasks
+    </div>
+    <div class="card-body">
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let task of tasks">{{task.name}}</li>
+      </ul>
+    </div>
+  </div>
+</div>
+  <div class="col">
+    <app-calendar></app-calendar>
+  </div>
+</div>

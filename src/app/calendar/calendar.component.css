@@ -1,0 +1,24 @@
+/* h3 {
+  margin: 0 0 10px;
+  background-color: darkcyan;
+} */
+
+pre {
+  background-color: #f5f5f5;
+  padding: 15px;
+}
+
+button.PTT {
+  background-color:#607d8b;
+  margin: 0 0 10px;
+  font-size: large;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  float: left;
+}

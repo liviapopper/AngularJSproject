@@ -1,0 +1,92 @@
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item" aria-current="page">ToDo App</li>
+      <li class="breadcrumb-item active" aria-current="page">{{title}}</li>
+    </ol>
+</nav>
+  
+<div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="inputGroup-sizing-default">Search</span>
+    </div>
+    <input type="text" [(ngModel)]="searchText" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+  </div>
+  
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Employee</th>
+        <th scope="col">Department</th>
+        <th scope="col">Start Date</th>
+        <th scope="col">Due Date</th>
+        <th scope="col">...</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let task of tasks | taskFilter : searchText"
+      [class.selected]="task === selectedTask"
+      (click)="onSelect(task)">
+        <th scope="row">{{task.id}}</th>
+        <td>{{task.name}}</td>
+        <td>{{task.empName}}</td>
+        <td>{{task.depName}}</td>
+        <td>{{task.startDate | date}}</td>
+        <td>{{task.dueDate | date}}</td>
+        <td><button class="delete" title="delete Task" (click)="deleteTask(task)">x</button></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <br>
+  <app-tasks-detail (closeTask)="completeTask($event)" [task]="selectedTask"></app-tasks-detail>
+  <br>
+
+  <div>
+    <label>Name:
+      <input class="form-control" #taskName required>
+    </label>
+  </div>
+
+  <div>
+    <label>Department:
+      <select class="form-control" #depName [(ngModel)]="department">
+        <option *ngFor="let department of departments">
+          {{department.name}}
+        </option>
+      </select>
+    </label>
+  </div>
+
+  <div>
+    <label>Employee:
+      <select class="form-control" #empName [(ngModel)]="employee"> 
+        <option *ngFor="let employee of employees">
+          {{employee.name}}
+        </option>
+      </select>
+    </label>
+  </div>
+
+  <div>
+      <label>Start date: 
+        <mat-form-field>
+          <input #startDatePicker matInput [matDatepicker]="picker1" placeholder="Choose a date" [(ngModel)]="startDate">
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+      </label>
+  </div>
+
+  <div>
+    <label>Due date: 
+      <mat-form-field>
+        <input #dueDatePicker matInput [matDatepicker]="picker2" placeholder="Choose a date" [(ngModel)]="dueDate">
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+      </mat-form-field>
+    </label>
+  </div>
+
+  <button (click)="createTask(taskName.value, empName.value, depName.value, startDatePicker.value, dueDatePicker.value)">Create task</button>

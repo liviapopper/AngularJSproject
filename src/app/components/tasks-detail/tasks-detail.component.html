@@ -1,0 +1,35 @@
+<div *ngIf = "task">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item" aria-current="page">ToDo App</li>
+          <li class="breadcrumb-item active" aria-current="page">Task Details</li>
+        </ol>
+    </nav>
+  <ul class="list-group list-group-flush list-group-item-secondary">
+    <li class="list-group-item list-group-item-secondary"><h2>Edit {{task.name | uppercase}} Details</h2></li>
+    <li class="list-group-item list-group-item-secondary">Name: <input type="text" #task.name [(ngModel)]="task.name"></li>
+    <li class="list-group-item list-group-item-secondary">Employee: 
+      <select class="form-control" #empName [(ngModel)]="task.empName"> 
+        <option *ngFor="let employee of employees">
+          {{employee.name}}
+        </option>
+      </select>
+    </li>
+    <li class="list-group-item list-group-item-secondary">Department:
+      <select class="form-control" #depName [(ngModel)]="task.depName">
+        <option *ngFor="let department of departments">
+          {{department.name}}
+        </option>
+      </select>
+    </li>
+    <li class="list-group-item list-group-item-secondary">
+      <mat-form-field>
+        <input #datePicker matInput [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="task.dueDate">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field></li>
+    <li class="list-group-item list-group-item-secondary">
+      <button class="save" title="save task" (click)="saveTask()">Confirm</button>
+    </li>
+  </ul>
+</div>

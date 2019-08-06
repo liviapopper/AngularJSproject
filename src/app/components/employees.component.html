@@ -1,0 +1,80 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item" aria-current="page">ToDo App</li>
+    <li class="breadcrumb-item active" aria-current="page">{{title}}</li>
+  </ol>
+</nav>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Hire date</th>
+      <th scope="col">Telephone</th>
+      <th scope="col">...</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let employee of employees"
+    [class.selected]="employee === selectedEmployee"
+    (click)="onSelect(employee)">
+      <th scope="row">{{employee.id}}</th>
+      <td>{{employee.name}}</td>
+      <td>{{employee.doh}}</td>
+      <td>{{employee.tel}}</td>
+      <td>    <button class="delete" title="delete Task" (click)="deleteTask(task)">x</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+<div *ngIf="selectedEmployee">
+  <h2>{{selectedEmployee.name | uppercase}}'s Details</h2>
+  <div><span>ID: </span>{{selectedEmployee.id}}</div>
+  <div><span>Date of Hire: </span>{{selectedEmployee.doh}}</div>
+  <div><span>Telephone: </span>{{selectedEmployee.tel}}</div>
+  <div><span>Name: </span>{{selectedEmployee.name}}</div>
+ 
+  </div>
+  <br> <br>
+  <div class='addEmployeeContainer'>
+  
+    <label class='addEmployeeItem'>Employee name:
+      <input class="form-control" #employeeName />
+    </label>
+    <br>
+  
+    <label class='addEmployeeItem'>Employee DoH:
+      <input class="form-control" #employeeDOH />
+    </label>
+    <br>
+
+    <label class='addEmployeeItem'>Employee telephone:
+      <input class="form-control" #employeeTel />
+    </label>
+  
+  
+    <button (click)="add(employeeName.value,  employeeTel.value, employeeDOH.value);
+                   employeeName.value='';  employeeTel.value=''; employeeDOH.value='';">
+      Add!
+    </button>
+  </div>
+  
+  <!-- <div class = "listItems">
+  
+    <h2>My Employees</h2>
+    <img src="https://www.exchangeutility.co.uk/wp-content/uploads/2018/02/group.png" style="align-content: center">
+    <ul class="employees">
+      <li *ngFor="let employee of employees"
+  [class.selected]="employee === selectedEmployee"
+      (click)="onSelect(employee)">
+  
+        <span class="badge">{{employee.id}}</span> {{employee.name}}
+          <button class="delete" title="delete Employee" (click)="delete(employee)">x</button>
+      </li>
+    </ul>
+  
+  </div> -->
+  
