@@ -35,7 +35,7 @@
     "devextreme-angular": "^18.1.6",
     "flatpickr": "^4.5.2",
     "ngx-bootstrap": "^3.0.1",
-    "npm": "^6.4.1",
+    "npm": "^6.14.6",
     "rxjs": "^6.0.0",
     "zone.js": "~0.8.26"
   },
